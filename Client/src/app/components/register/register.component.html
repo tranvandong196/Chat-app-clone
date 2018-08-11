@@ -1,0 +1,40 @@
+<div style="text-align:center" xmlns="">
+  <img class="mb-4" src="../assets/chat-app-logo.jpg" alt="" height="120">
+  <form [formGroup]="form" (ngSubmit)="onClickSubmit()" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+
+    <!--<label class="has-error" *ngIf="formdata.username.hasError('required') && (formdata.username.dirty || isSummited)">{{error}}</label>-->
+    <div *ngIf="
+        (formdata.username.dirty &&
+        formdata.password.dirty &&
+        formdata.confirmPassword.dirty &&
+        formdata.email.dirty) ||
+        isSummited">
+    <label class="has-error" *ngIf="form.status === 'INVALID'">{{error}}</label>
+
+    </div>
+
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username"
+           formControlName="username">
+
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" formControlName="email">
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password">
+
+    <label for="inputPassword_confirmation" class="sr-only">Confirm password</label>
+    <input type="password" id="inputPassword_confirmation" class="form-control" placeholder="Confirm Password"
+           formControlName="confirmPassword">
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <hr>
+    <h5>or sign up with</h5>
+    <div class="social-login">
+      <button class="btn btn-lg btn-primary mr-2 facebook" type="button" (click)="OnClickSignInFacebook()">Facebook
+      </button>
+      <button class="btn btn-lg btn-danger google" type="button" (click)="onClickSignInGoogle()">Google</button>
+    </div>
+  </form>
+</div>

@@ -8,8 +8,7 @@ const {connectMongoDb} = require('../app/controllers/dbController');
 connectMongoDb();
 /* GET users listing. */
 router.post('/register', UserController.create);
-router.post('/login', AuthController.authenticate, UserController.auth);
-router.get('/logout', AuthController.unAuthenticate, UserController.unAuth);
+router.post('/login', AuthController.authenticate('jwt'), UserController.auth);
 router.get('/info', AuthController.isAuthenticated, UserController.info);
 router.get('/auth/jwt', AuthController.isAuthenticated, UserController.auth);
 

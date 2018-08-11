@@ -1,0 +1,51 @@
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  /*border: 0.5px solid gray;*/
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.form-signin .has-error {
+  color: red;
+}
+.form-signin input {
+  margin-bottom: 8px;
+}
+
+.form-signin input[type = "email"],
+.form-signin #inputPassword_confirmation{
+  margin-bottom: 20px;
+}
+
+.form-signin .social-login {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form-signin .social-login .facebook {
+  flex: 1;
+}
+
+.form-signin .social-login .google {
+  flex: 1;
+  margin-left: auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.social-login {
+  display: flex;
+}
+.social-login > button {
+  flex: 1;
+}

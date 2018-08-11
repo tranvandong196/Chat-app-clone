@@ -1,40 +1,35 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../services/authentication.service';
-import {SocketService} from '../../services/socket.service';
+
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
-
-  public username;
-  public password;
-  public isRemember;
-  public formdata;
+export class RegisterComponent implements OnInit {
+  public form;
+  public formdata: any;
   public isSummited;
-  public error = 'Tài khoản hoặc mật khẩu không hợp lệ';
+  public error = 'Please enter valid data in all fields';
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private socketService: SocketService
+    private authenticationService: AuthenticationService
   ) {
 
   }
 
   ngOnInit() {
     this.checkAuth();
-    this.username = new FormControl('', Validators.required);
-    this.password = new FormControl('', Validators.required);
-    this.isRemember = new FormControl(false);
-
-    this.formdata = new FormGroup({
-      username: this.username,
-      password: this.password,
-      isRemember: this.isRemember
-    });
+    this.formdata = {
+      username: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required),
+      isRemember: new FormControl(false)
+    };
+    this.form = new FormGroup(this.formdata);
   }
 
   checkAuth() {
@@ -46,18 +41,17 @@ export class LoginComponent implements OnInit {
 
   onClickSubmit() {
     this.isSummited = true;
+    console.log(this.form);
     if (this.formdata.status === 'VALID') {
-      this.login();
+      this.register();
     } else {
+      if (this.formdata.confirmPassword.value !== this.formdata.password.value) {
+        this.error = 'Password must match';
+      } else {
+        this.error = 'Please enter valid data in all fields';
+      }
       console.log('Tài khoản hoặc mật khẩu không hợp lệ');
     }
-  }
-
-  login() {
-    this.authenticationService.login(this.formdata.value)
-      .subscribe(user => {
-        console.log('User: ', user);
-      });
   }
 
   register() {
@@ -67,12 +61,6 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  getInfo() {
-    this.authenticationService.getInfo()
-      .subscribe(info => {
-        console.log('Info: ', info);
-      });
-  }
 
   OnClickSignInFacebook() {
     /* Facebook sign in from server use passport library */

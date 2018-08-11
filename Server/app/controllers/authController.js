@@ -9,21 +9,7 @@ const passport = require('../models/passport');
 module.exports = authController = () => {
     let authenticate = (request, scope = null) => {
         if (request === 'jwt') {
-            return (req, res, next) => {
-                User.findOne({username: req.body.username}, (err, user) => {
-                    if (!user) {
-                        res.json({error: 'User is not exist'})
-                    } else if (user) {
-                        let payload = {username: req.body.username};
-                        let jwtToken = jwt.sign(payload, config.jwtSecret, {expiresIn: 300});
-
-                        req.accessToken = 'JWT ' + jwtToken;
-                        next();
-                    } else {
-                        res.json({error: 'Login Error'})
-                    }
-                })
-            }
+            return verifyJWT;
         }
 
         if (request === 'facebook' || request === 'google') {
@@ -55,6 +41,22 @@ module.exports = authController = () => {
                     console.log('Saved user: ', email);
                     return res.redirect('http://localhost:4200/saved-user-to-database');
                 });
+            }
+        })
+    };
+
+    let verifyJWT = (req, res, next) => {
+        User.findOne({username: req.body.username}, (err, user) => {
+            if (!user) {
+                res.json({error: 'User is not exist'})
+            } else if (user) {
+                let payload = {username: req.body.username};
+                let jwtToken = jwt.sign(payload, config.jwtSecret, {expiresIn: 300});
+
+                req.accessToken = 'JWT ' + jwtToken;
+                next();
+            } else {
+                res.json({error: 'Login Error'})
             }
         })
     };
