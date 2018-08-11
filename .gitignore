@@ -1,0 +1,61 @@
+.idea/
+.DS_Store
+Thumbs.db
+## Server
+/Server/node_modules
+/Server/dist
+/Server/npm-debug.log
+
+# IDEs and editors
+/Server/.idea
+/Server/.project
+/Server/.classpath
+/Server/.c9/
+/Server/*.launch
+/Server/.settings/
+/Server/*.sublime-workspaceServer
+
+## Client
+# compiled output
+/Client/dist
+/Client/tmp
+
+# dependencies
+/Client/node_modules
+
+# misc
+/Client/npm-debug.log
+
+# e2e
+/Client/e2e/*.js
+/Client/e2e/*.map
+
+# IDEs and editors
+/Client/.idea
+/Client/.project
+/Client/.classpath
+/Client/.c9/
+/Client/*.launch
+/Client/.settings/
+/Client/*.sublime-workspace
+
+# IDE - VSCode
+/Client/.vscode/*
+/Client/!.vscode/settings.json
+/Client/!.vscode/tasks.json
+/Client/!.vscode/launch.json
+/Client/!.vscode/extensions.json
+
+# misc
+/Client/.sass-cache
+/Client/connect.lock
+/Client/coverage
+/Client/libpeerconnection.log
+/Client/npm-debug.log
+/Client/yarn-error.log
+/Client/testem.log
+/Client/typings
+
+# System Files
+/Client/.DS_Store
+/Client/Thumbs.db

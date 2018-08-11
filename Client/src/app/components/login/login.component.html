@@ -1,0 +1,25 @@
+<div style="text-align:center" xmlns="">
+  <img class="mb-5" src="../assets/chat-app-logo.jpg" alt="" height="120">
+  <form [formGroup]="formdata" (ngSubmit)="onClickSubmit()" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+
+    <label class="has-error" *ngIf="username.hasError('required') && (username.dirty || isSummited)">{{error}}</label>
+
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input type="email" id="inputUsername" name="username" class="form-control" placeholder="Username" formControlName="username">
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password">
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" formControlName="isRemember"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <hr>
+    <h5>Or sign in with</h5>
+      <button class="btn btn-lg btn-primary btn-block" type="button" (click)="OnClickSignInFacebook()">Facebook</button>
+
+      <button class="btn btn-lg btn-danger btn-block" type="button" (click)="onClickSignInGoogle()">Google</button>
+  </form>
+</div>
